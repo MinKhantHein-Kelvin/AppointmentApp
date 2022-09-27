@@ -1,0 +1,39 @@
+<mat-spinner *ngIf="loading"></mat-spinner>
+
+<div class="form-group example-card  show-hide-message">
+  <div [ngClass] = "messageClass">
+    {{message}}
+  </div>
+</div>
+
+<div class="text-right">
+  <button mat-raised-button color="primary" routerLink="/">
+    <mat-icon >add</mat-icon>Add Appointment
+  </button>
+</div>
+<div>
+  <mat-card class="example-card my-2" *ngIf="!loading && !loading">
+    <mat-card-content>
+      <table class="table" *ngIf="!loading && !loading">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Appointment Date</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Cancel</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let appointment of appointments; index as i">
+            <th scope="row">{{ i + 1 }}</th>
+            <td>{{appointment.appointmentDate | date : 'dd/MM/yyyy'}}</td>
+            <td>{{appointment.name}}</td>
+            <td>{{appointment.email}}</td>
+            <td><button mat-raised-button color="warn" class="btn btn-sm" (click)="cancelAppointment(appointment._id)">Cancel</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </mat-card-content>
+  </mat-card>
+</div>
